@@ -1,0 +1,85 @@
+{% extends 'Auth/auth_base.html' %}
+{% load static %}
+{% block authcontent %}
+<style>
+.password-container {
+    position: relative;
+}
+
+#password {
+    padding-right: 30px; 
+}
+
+#togglePassword  {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+</style>
+<section class="auth-content-main">
+    <div class="errorAlert" id="errorFormAlert" style="display: none;">
+                
+        <ul>
+            <li class="error-message"></li>
+        </ul>
+    </div>
+     
+    <div class="successAlert" id="successFormAlert" style="display: none;">
+        <ul>
+            <li class="success-message"></li>
+        </ul>
+    </div>
+        <br><br>
+        <div class="card mx-auto card-login" >
+            <div class="card-body p-lg-4 p-2">
+                <div style="text-align: center;">
+                    <img src="{% static '/assets/imgs/image.jpg' %}" alt="" height="120px" width="120px">
+                </div>
+                <h4 class="card-title mb-4 text-center">Document Management Tool</h4>
+                <form method="POST" action="." enctype="multipart/form-data" id="createForm">
+                    {% csrf_token %}
+                    <div class="mb-3 form-item">
+                        <input class="form-control" placeholder="Emial" name="email" type="email" required />
+                        <div class="required-message"></div>
+                    </div>
+                    <div class="mb-3 form-item">
+                        <div class="password-container">
+                            <input class="form-control" placeholder="Password" name="password" id="password" type="password" minlength="6" required />
+                            <i class="fa-solid fa-eye" id="togglePassword"></i>
+                        </div>
+                        <div  class="required-message"  ></div>
+                    </div>    
+                </form>
+                <div class="mb-4 text-center">
+                    <button type="submit" class="btn w-50 justify-content-center bg-custom-primary text-white" id="userLogin">Login</button>
+                </div>
+    
+                <div class="d-flex justify-content-center">
+                    <p class="text-center">Are you not registered? </p> &nbsp;&nbsp;<a class="primary-colour" href="{% url 'registration' %}"><h6 class="primary-colour">Registration</h6></a>
+                    
+                </div>
+                
+            </div>
+        </div>
+</section>
+
+
+<script>
+    document.getElementById("togglePassword").addEventListener("click", function() {
+    var passwordField = document.getElementById("password");
+    var icon = this;
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+});
+</script>
+{% endblock %}

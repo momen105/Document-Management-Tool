@@ -1,0 +1,55 @@
+{% load static %}
+<style>
+    .menu-hr{
+        margin-top: 0px;
+}
+    .menu-header{
+        text-align: center;
+}
+    
+</style>
+
+<div class="aside-top">
+    <h4 class="brand-wrap primary-colour">Document Management Tool</h4>
+    <div>
+        <button class="btn btn-icon btn-aside-minimize"><i class="custom-icons fa-solid fa-bars"></i></button>
+    </div>
+</div>
+<nav class="side-nav">
+    <ul class="menu-aside">
+        <li class="menu-item">
+            <a class="menu-link" href="{% url 'dashboard' %}" data-api="/dashboard/">
+                <i class="custom-icons fa-solid fa-building-columns"></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        
+             
+</nav>
+
+<script>
+    $(document).ready(function () {
+        // Get the current URL path
+        var currentPath = window.location.pathname;
+
+        // Loop through each main menu item
+        $('.menu-aside li.menu-item').each(function () {
+            var menuItem = $(this);
+            var menuItemPath = menuItem.find('a.menu-link').attr('href');
+
+            // Check if the current path matches the main menu item
+            if (currentPath.startsWith(menuItemPath)) {
+                menuItem.addClass('active');
+            }
+
+            // Check if the current path matches any submenu item
+            menuItem.find('.submenu a').each(function () {
+                var submenuItemPath = $(this).attr('href');
+                if (currentPath === submenuItemPath) {
+                    menuItem.addClass('active');
+                    $(this).addClass('active');
+                }
+            });
+        });
+    });
+</script>

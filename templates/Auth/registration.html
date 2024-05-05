@@ -1,0 +1,131 @@
+{% extends 'Auth/auth_base.html' %}
+{% load static %}
+{% block authcontent %}
+
+<style>
+    .password-container {
+    position: relative;
+}
+
+#password {
+    padding-right: 30px;
+}
+
+#togglePassword  {
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+#togglePassword2  {
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+</style>
+<section class="auth-content-main">
+    <div class="errorAlert" id="errorFormAlert" style="display: none;">
+                
+        <ul>
+            <li class="error-message"></li>
+        </ul>
+    </div>
+     
+    <div class="successAlert" id="successFormAlert" style="display: none;">
+        <ul>
+            <li class="success-message"></li>
+        </ul>
+    </div>
+    
+    <div class="d-lg-flex">
+        <div class="col-lg-6 card-register-header">
+            <div style="text-align: center;">
+                <img  src="{% static '/assets/imgs/image.jpg' %}" alt="" >
+            </div>
+        </div>
+        <div class="col-lg-5 registration-form" >
+            
+            <h3 class="primary-colour text-center">Document Management Tool</h3>
+            <h4 class="primary-colour mb-4  text-center" >New Registration</h4>
+                <form method="POST" action="." enctype="multipart/form-data" id="createForm">
+                    {% csrf_token %}
+                    <div class="mb-3 form-item">
+                        <input class="form-control" placeholder="name" name="name" type="text"/>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <input class="form-control" placeholder="email" name="email" type="email" required/>
+                        <div class="required-message"></div>
+                    </div>
+                            
+                    
+                    <div class="mb-3 form-item">
+                        <div class="password-container">
+                            <input class="form-control" placeholder="password" name="password" id="password" type="password" minlength="6" required />
+                            <i class="fa-solid fa-eye" id="togglePassword"></i>
+                        </div>
+                        <div  class="required-message"  ></div>
+                    </div>                                
+                            
+                    <div class="mb-3 form-item">
+                        <div class="password-container">
+                            <input class="form-control" placeholder="Confirm Password" name="password2" id="password2" type="password" minlength="6" required />
+                            <i class="fa-solid fa-eye" id="togglePassword2"></i>
+                        </div>
+                        <div  class="required-message"></div>
+                    </div>
+
+                    <div  class="password-message" style="color: red;font-size: 12px; margin-left: 10px;"></div>
+        
+                    <br>
+                     <div class="mb-4 text-center">
+                         <button type="submit" class="btn w-50 justify-content-center bg-custom-primary text-white"  id="registrationButton" >Registration</button>
+                     </div>
+                </form>
+                <p class="text-center mb-2 " style="font-size: 13px;">Are you already registered? <a href="{% url 'login' %}" class="primary-colour" style="font-weight: bolder;">Login</a></p>
+                
+        </div>
+
+    </div>
+    
+</section>
+<script>
+ 
+
+    document.getElementById("togglePassword").addEventListener("click", function() {
+    var passwordField = document.getElementById("password");
+    var icon = this;
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+});
+document.getElementById("togglePassword2").addEventListener("click", function() {
+    var passwordField = document.getElementById("password2");
+    var icon = this;
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        passwordField.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+});
+
+
+</script>
+
+{% endblock %}
