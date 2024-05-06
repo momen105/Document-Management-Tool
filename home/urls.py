@@ -3,5 +3,6 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from .views import *
 
 urlpatterns = [
-    path("", DashboardView.as_view(), name="dashboard"),
+    path("", HomeView.as_view(), name="home"),
+    path("document/", DocumentAPIView.as_view(), name="document"),
 ]

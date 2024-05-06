@@ -4472,3 +4472,31 @@ margin-bottom: 5px !important;
 }
 
 
+
+/* ---------------------file upload --------------------*/
+.upload-file {
+  width: 136px;
+  padding: 20px;
+  border-radius: 30px;
+  border: 2px solid var(--secondary-transparent) ;
+  margin-bottom: 15px;
+
+ 
+}
+.upload-file a{
+  color: var(--primary-color) !important;
+}
+.upload-file:hover{
+  background-color: var(--secondary-transparent);
+  box-shadow: 0 5px 5px rgba(15, 130, 237, 0.281);
+}
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

@@ -6,21 +6,40 @@
     .menu-header{
         text-align: center;
 }
-    
+
 </style>
 
 <div class="aside-top">
-    <h4 class="brand-wrap primary-colour">Document Management Tool</h4>
+    <h4 class="brand-wrap primary-colour">DMT</h4>
     <div>
         <button class="btn btn-icon btn-aside-minimize"><i class="custom-icons fa-solid fa-bars"></i></button>
     </div>
 </div>
 <nav class="side-nav">
     <ul class="menu-aside">
+        <li class="upload-file">
+            <form method="post" action="." enctype="multipart/form-data" id="profile-form">
+                {% csrf_token %}
+                
+                <input type="file" class="visually-hidden" id="fileInput" name="files" accept="*/*" aria-describedby="inputGroupFileAddon">
+                <label class="edit-profile" for="fileInput">
+                    <a><i class="fa-solid fa-plus"></i>
+                    <span class="text">New File</span>
+                </a></label>
+            
+                <button class="btn btn-primary visually-hidden" type="submit">ছবি আপডেট</button>
+            </form>
+        </li>
         <li class="menu-item">
-            <a class="menu-link" href="{% url 'dashboard' %}" data-api="/dashboard/">
+            <a class="menu-link" data-api="/">
                 <i class="custom-icons fa-solid fa-building-columns"></i>
-                <span class="text">Dashboard</span>
+                <span class="text">Home</span>
+            </a>
+        </li>
+        <li class="menu-item">
+            <a class="menu-link"  data-api="/document/">
+                <i class="custom-icons fa-solid fa-building-columns"></i>
+                <span class="text">Home</span>
             </a>
         </li>
         
